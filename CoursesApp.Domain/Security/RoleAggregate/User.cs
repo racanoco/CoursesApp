@@ -4,7 +4,8 @@ namespace CoursesApp.Domain.Security.RoleAggregate
 {
     public class User : IDomainEntity
     {
-        public Guid Id {get; private set;}
+        #region PROPERTIES
+        public Guid Id { get; private set; }
         public Guid RoleId { get; private set; }
         public string Code { get; private set; }
         public string FirsName { get; private set; }
@@ -13,16 +14,21 @@ namespace CoursesApp.Domain.Security.RoleAggregate
         public UserStatus UserStatus { get; private set; }
         public string Description { get; private set; }
         public virtual Role Role { get; private set; }
+        #endregion
 
+
+        #region BUILDER
         protected User()
         {
 
         }
+        #endregion
 
+        #region METHODS
         public static User CreateNew(Guid roleId, string code, string firstName, string lastName, Address address, string description)
         {
-            User entityUser = new() 
-            { 
+            User entityUser = new()
+            {
                 Id = Guid.NewGuid(),
                 RoleId = roleId,
                 Code = code,
@@ -36,5 +42,20 @@ namespace CoursesApp.Domain.Security.RoleAggregate
             return entityUser;
 
         }
+
+        internal bool ChangeFirstName(string firstName)
+        {
+            if(FirsName != firstName)
+            {
+                FirsName = firstName;
+                return true;
+            }
+            return false;
+        }
+        #endregion
+
+
+
+
     }
 }
