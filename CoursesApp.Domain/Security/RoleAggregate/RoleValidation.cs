@@ -2,6 +2,10 @@
 
 namespace CoursesApp.Domain.Security.RoleAggregate
 {
+    /// <summary>
+    /// Class that manages the basic validation of the fields of the Role class. 
+    /// Uses the FluentValidation nuget package.
+    /// </summary>
     public class RoleValidation: AbstractValidator<Role>
     {
         public RoleValidation()
