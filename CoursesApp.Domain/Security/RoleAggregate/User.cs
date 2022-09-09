@@ -1,4 +1,5 @@
 ﻿using Common.Model;
+using FluentValidation.Results;
 
 namespace CoursesApp.Domain.Security.RoleAggregate
 {
@@ -51,6 +52,11 @@ namespace CoursesApp.Domain.Security.RoleAggregate
                 return true;
             }
             return false;
+        }
+
+        public ValidationResult ValidateModel()
+        {
+            return new UserValidation().Validate(this);
         }
         #endregion
 
