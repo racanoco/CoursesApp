@@ -18,4 +18,8 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Console" Version="6.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoursesApp.Domain\CoursesApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>
