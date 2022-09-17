@@ -9,10 +9,10 @@ namespace CoursesApp.Domain.Security.RoleAggregate
         public Guid Id { get; private set; }
         public Guid RoleId { get; private set; }
         public string Code { get; private set; }
-        public string FirsName { get; private set; }
+        public string FirstName { get; private set; }
         public string LastName { get; private set; }
         public Address Address { get; private set; }
-        public UserStatus UserStatus { get; private set; }
+        public UserStatus Status { get; private set; }
         public string Description { get; private set; }
         public virtual Role Role { get; private set; }
         #endregion
@@ -33,10 +33,10 @@ namespace CoursesApp.Domain.Security.RoleAggregate
                 Id = Guid.NewGuid(),
                 RoleId = roleId,
                 Code = code,
-                FirsName = firstName,
+                FirstName = firstName,
                 LastName = lastName,
                 Address = address,
-                UserStatus = UserStatus.Active,
+                Status = UserStatus.Active,
                 Description = description
             };
 
@@ -46,9 +46,9 @@ namespace CoursesApp.Domain.Security.RoleAggregate
 
         internal bool ChangeFirstName(string firstName)
         {
-            if(FirsName != firstName)
+            if(FirstName != firstName)
             {
-                FirsName = firstName;
+                FirstName = firstName;
                 return true;
             }
             return false;
