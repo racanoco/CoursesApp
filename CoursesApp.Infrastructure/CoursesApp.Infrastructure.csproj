@@ -22,4 +22,10 @@
     <ProjectReference Include="..\CoursesApp.Domain\CoursesApp.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="appSettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
