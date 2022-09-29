@@ -1,5 +1,6 @@
 ﻿using Common.Model;
 using CoursesApp.Domain.Security.RoleAggregate.Events;
+using FluentValidation.Results;
 
 namespace CoursesApp.Domain.Security.RoleAggregate
 {
@@ -22,6 +23,15 @@ namespace CoursesApp.Domain.Security.RoleAggregate
         #endregion
 
         #region METHODS
+
+        public ValidationResult ValidateModel()
+        {
+            return new RoleValidation().Validate(this);
+        }
+        public void AddUser(string code, string firstName, string lastName, Address address, string description)
+        {
+            Users.Add(User.CreateNew(Id, code, firstName, lastName, address, description));
+        }
         public static Role CreateNew(string code, string name, string description)
         {
             Role entityRole = new()

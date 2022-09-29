@@ -57,7 +57,7 @@ namespace CoursesApp.Domain.Security.RoleAggregate
         public ValidationResult ValidateModel()
         {
             return new UserValidation().Validate(this);
-        }
+        }        
         #endregion
 
 
