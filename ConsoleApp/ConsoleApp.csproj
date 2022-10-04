@@ -12,4 +12,9 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CoursesApp.Application\CoursesApp.Application.csproj" />
+    <ProjectReference Include="..\CoursesApp.Infrastructure\CoursesApp.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
