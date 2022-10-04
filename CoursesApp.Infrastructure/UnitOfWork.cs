@@ -48,9 +48,11 @@ namespace CoursesApp.Infrastructure
             _context.SaveChanges();
 
             var _uncommittedDomainEvents = aggregateRoot.GetUncommittedDomainEvents();
+
             foreach (var domainEvent in _uncommittedDomainEvents)
             {
                 var _domainEvent = (dynamic)Convert.ChangeType(domainEvent, domainEvent.GetType());
+
                 _domainEventBus.Execute(_domainEvent);
             }
         }

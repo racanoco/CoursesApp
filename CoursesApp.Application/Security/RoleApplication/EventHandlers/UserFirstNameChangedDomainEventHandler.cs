@@ -21,7 +21,8 @@ namespace CoursesApp.Application.Security.RoleApplication.EventHandlers
             // Registrar logs
 
             Buyer buyer = _unitOfWork._buyerRepository.GetById(handle.Id);
-            if (buyer != null)
+
+            if (buyer is not null)
             {
                 buyer.ChangeFirstName(handle.FirstName);
                 _unitOfWork._buyerRepository.Update(buyer);
@@ -30,7 +31,8 @@ namespace CoursesApp.Application.Security.RoleApplication.EventHandlers
             }
 
             Student student = _unitOfWork._studentRepository.GetById(handle.Id);
-            if (student != null)
+
+            if (student is not null)
             {
                 student.ChangeFirstName(handle.FirstName);
                 _unitOfWork._studentRepository.Update(student);

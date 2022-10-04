@@ -1,4 +1,6 @@
-﻿namespace Common.Model
+﻿using Common.DomainEvent;
+
+namespace Common.Model
 {
     public abstract class AggregateRoot: IEventProvider
     {

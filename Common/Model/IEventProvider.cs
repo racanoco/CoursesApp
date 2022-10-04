@@ -1,4 +1,6 @@
-﻿namespace Common.Model
+﻿using Common.DomainEvent;
+
+namespace Common.Model
 {
     internal interface IEventProvider
     {

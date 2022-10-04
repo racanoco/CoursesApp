@@ -1,4 +1,4 @@
-﻿using Common.Model;
+﻿using Common.DomainEvent;
 
 namespace CoursesApp.Domain.Security.RoleAggregate.Events
 {
