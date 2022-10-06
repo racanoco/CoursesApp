@@ -45,20 +45,22 @@ static async Task ExecuteApp(IServiceProvider serviceProvider)
 {
     RoleService roleService = serviceProvider.GetRequiredService<RoleService>();
 
-    //ServiceResult serviceResult = await roleService.Create("admin", "Admin", "Rol con privilegios de administrador");
-    //ServiceResult serviceResult = await roleService.Create("normal", "Normal", "Rol con privilegios normales");
+    // ServiceResult serviceResult = await roleService.Create("admin", "Admin", "Rol con privilegios de administrador");
+    // ServiceResult serviceResult = await roleService.Create("normal", "Normal", "Rol con privilegios normales");
 
-    //Address address1 = new Address("Calle 1", "Ciudad 1", "Estado 1", "Pais 1", "100");
-    //ServiceResult serviceResult = await roleService.CreateUser(
-    //    Guid.Parse("8cf20e5c-b100-43e6-ab48-d5bbe27eb80c"), "user1", "Nombre 1", "Apellido 1", address1, "Cualquier cosa 1"
-    //    );
+    // Address address1 = new Address("Calle 1", "Ciudad 1", "Estado 1", "Pais 1", "100");
+
+    // ServiceResult serviceResult = await roleService.CreateUser(Guid.Parse("CAF2B7E7-46A5-4AE2-932A-FD36F054F547"), "user1", "Nombre 1", "Apellido 1", address1, "Cualquier cosa 1");
 
     //Address address2 = new Address("Calle 2", "Ciudad 2", "Estado 2", "Pais 2", "200");
-    //ServiceResult serviceResult = await roleService.CreateUser(
-    //    Guid.Parse("7902c9df-313b-4a14-b244-a22a3ffda96a"), "user2", "Nombre 2", "Apellido 2", address2, "Cualquier cosa 2"
-    //    );
+    //ServiceResult serviceResult = await roleService.CreateUser(Guid.Parse("CAF2B7E7-46A5-4AE2-932A-FD36F054F547"), "user2", "Nombre 2", "Apellido 2", address2, "Cualquier cosa 2");
 
-    ServiceResult serviceResult = await roleService.UpdateUserFirstName(Guid.Parse("6e7133f7-afd8-4bde-8072-70112dfb23c7"), "Nombre 1 modificado");
+    ServiceResult serviceResult = await roleService.UpdateUserFirstName(Guid.Parse("2BC703C7-69A9-4F55-B477-40800CC6FF55"), "Nombre 1 modificado");
 
-    Console.WriteLine();
+    if (serviceResult.ErrorMessage != "")
+        Console.WriteLine(serviceResult.ErrorMessage);
+    else
+        if(serviceResult.Data is not null)
+            Console.WriteLine("El proceso ha finalizado correctamente.");
+    
 }

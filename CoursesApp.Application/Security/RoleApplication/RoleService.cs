@@ -2,17 +2,17 @@
 using CoursesApp.Application.Security.RoleApplication.DTOs;
 using CoursesApp.Domain;
 using CoursesApp.Domain.Security.RoleAggregate;
-using CoursesApp.Infrastructure;
 using CoursesApp.Infrastructure.Exceptions;
+using Microsoft.Extensions.Logging;
 
 namespace CoursesApp.Application.Security.RoleApplication
 {
     public class RoleService
     {
-        private CoursesAppLogger _logger;
+        private ILogger _logger;
         private IUnitOfWork _unitOfWork;
 
-        public RoleService(CoursesAppLogger logger, IUnitOfWork unitOfWork)
+        public RoleService(ILogger logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -21,9 +21,7 @@ namespace CoursesApp.Application.Security.RoleApplication
         public Task<ServiceResult> Create(string code, string name, string description)
         {
             ValidateRoleUniqueIndex(code, name);
-
             Role role = Role.CreateNew(code, name, description);
-
             if (!role.ValidateModel().IsValid)
             {
                 return Task.FromResult(new ServiceResult(role.ValidateModel().Errors));
@@ -40,16 +38,13 @@ namespace CoursesApp.Application.Security.RoleApplication
             Address address, string description)
         {
             ValidateUserUniqueIndex(code);
-
             Role role = _unitOfWork._roleRepository.Find(r => r.Id == roleId);
-
             if (role == null)
             {
                 return Task.FromResult(new ServiceResult(new NullReferenceException("Role not found")));
             }
 
             role.AddUser(code, firstName, lastName, address, description);
-
             if (!role.Users[0].ValidateModel().IsValid)
             {
                 return Task.FromResult(new ServiceResult(role.Users[0].ValidateModel().Errors));
@@ -88,15 +83,13 @@ namespace CoursesApp.Application.Security.RoleApplication
         private void ValidateRoleUniqueIndex(string code, string name)
         {
             Role role = _unitOfWork._roleRepository.Find(e => e.Code == code);
-
-            if (role is not null)
+            if (role != null)
             {
                 throw new InvalidOperationException("The role code already exist");
             }
 
             role = _unitOfWork._roleRepository.Find(e => e.Name == name);
-
-            if (role is not null)
+            if (role != null)
             {
                 throw new InvalidOperationException("The role name already exist");
             }
@@ -105,8 +98,7 @@ namespace CoursesApp.Application.Security.RoleApplication
         private void ValidateUserUniqueIndex(string code)
         {
             Role role = _unitOfWork._roleRepository.GetByUserCode(code);
-
-            if (role is not null)
+            if (role != null)
             {
                 throw new RepeatedUniqueIndexException("The user code already exist");
             }
